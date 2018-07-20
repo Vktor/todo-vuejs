@@ -6,18 +6,42 @@
   <title>To-Do vue.js</title>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="app">
+      <h2>Adminsitrador de tareas</h2>
+      <h3> {{name}} </h3>
+      <fieldset>
+          <legend>Nueva tarea</legend>
 
+      </fieldset>
+      <fieldset>
+          <legend>Lista de tareas</legend>
+          <p v-show="!tasks.length">No hay tareas pendientes</p>
+          <div v-show="tasks.length">
+              <ul>
+                  <li v-for="t in tasks">
+                      <span> {{t.title}} - {{t.time}} </span>
+                      <span @click="removeTask(i)>❌</span>
+                  </li>
+              </ul>
+          </div>
+      </fieldset>
+  </div>
 
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
-  <script>
+   <script>
       const app = new Vue({
         el: '#app',
         data () {
-            return ''
+            return {
+                name: '',
+                tasks: [],
+                newTask: {
+                    title: '',
+                    time: 0
+                }
+            }
         }
     })
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
 </body>
 </html>
