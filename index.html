@@ -19,7 +19,7 @@
           </p>
           <p>
               <button @click="addTask">Guardar</button>
-              <button>Cancelar</button>
+              <button @click="cancel">Cancelar</button>
           </p>
       </fieldset>
       <fieldset>
@@ -58,9 +58,17 @@
                     title: this.newTask.title,
                     time: this.newTask.time
                 })
+                localStorage.setItem("tasks", JSON.stringify(this.tasks))
+                this.newTask.title = ''
+                this.newTask.time = 0
             },
             removeTask (index) {
                 this.tasks.splice(index, 1)
+                localStorage.setItem("tasks", JSON.stringify(this.tasks))
+            },
+            cancel () {
+                this.newTask.title = '',
+                this.newTask.time = 0
             }
         }
     })
