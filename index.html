@@ -11,7 +11,16 @@
       <h3> {{ name }} </h3>
       <fieldset>
           <legend>Nueva tarea</legend>
-
+          <p>
+            <input type="text" v-model="newTask.title" placeholder="Ingrese la nueva tarea">
+          </p>
+          <p>
+            <input type="number" v-model="newTask.time" placeholder="Horas trabajadas">
+          </p>
+          <p>
+              <button @click="addTask">Guardar</button>
+              <button>Cancelar</button>
+          </p>
       </fieldset>
       <fieldset>
           <legend>Lista de tareas</legend>
@@ -38,6 +47,20 @@
                     title: '',
                     time: 0
                 }
+            }
+        },
+        methods:{
+            addTask () {
+                if (!this.newTask.time || !this.newTask.title) {
+                    return
+                }
+                this.tasks.push({
+                    title: this.newTask.title,
+                    time: this.newTask.time
+                })
+            },
+            removeTask (index) {
+                this.tasks.splice(index, 1)
             }
         }
     })
